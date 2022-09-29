@@ -39,7 +39,10 @@ public class ListeProduits extends AppCompatActivity {
                             listeProduit.add(produit);
                         }
 
-                        rvListeProduit.setAdapter(new AdapterListeProduit(listeProduit));
+                        rvListeProduit.setAdapter(
+                                new AdapterListeProduit(
+                                        listeProduit,
+                                        produit -> Log.d("produit_clque)",Integer.toString(produit.getId()))));
 
                         Toast.makeText(
                                 this,

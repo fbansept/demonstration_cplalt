@@ -13,9 +13,15 @@ import java.util.ArrayList;
 public class AdapterListeProduit extends RecyclerView.Adapter<AdapterListeProduit.ProduitViewHolder> {
 
     private ArrayList<Product> listeProduits;
+    private ClicProductListener listener;
 
-    public AdapterListeProduit(ArrayList<Product> listeProduits) {
+    public AdapterListeProduit(ArrayList<Product> listeProduits, ClicProductListener listener) {
         this.listeProduits = listeProduits;
+        this.listener = listener;
+    }
+
+    interface ClicProductListener {
+        void onClicProduit(Product produit);
     }
 
     static class ProduitViewHolder extends RecyclerView.ViewHolder {
@@ -54,7 +60,7 @@ public class AdapterListeProduit extends RecyclerView.Adapter<AdapterListeProdui
         holder.getTvTitleProduct().setText(produit.getTitle());
         holder.getTvPriceProduct().setText(produit.getPrice() + "€");
 
-
+        holder.itemView.setOnClickListener(view -> listener.onClicProduit(produit));
     }
 
     @Override
