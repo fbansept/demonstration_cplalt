@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -42,7 +43,16 @@ public class ListeProduits extends AppCompatActivity {
                         rvListeProduit.setAdapter(
                                 new AdapterListeProduit(
                                         listeProduit,
-                                        produit -> Log.d("produit_clque)",Integer.toString(produit.getId()))));
+                                        produit -> {
+                                            Intent intent = new Intent(
+                                                    this,
+                                                    DetailProduit.class);
+
+                                            intent.putExtra("idProduit",produit.getId());
+                                            startActivity(intent);
+                                        }));
+
+
 
                         Toast.makeText(
                                 this,
